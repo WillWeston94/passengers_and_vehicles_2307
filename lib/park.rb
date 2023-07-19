@@ -4,12 +4,14 @@ require './lib/passenger'
 class Park
   attr_reader :unique_name,
               :admission_price,
-              :vehicles_entered
+              :vehicles_entered,
+              :all_attendees
 
   def initialize(park_attributes)
     @unique_name = park_attributes[:unique_name]
     @admission_price = park_attributes[:admission_price]
     @vehicles_entered = []
+    @all_attendees = []
   end
 
   def add_vehicle(vehicle)
@@ -29,6 +31,24 @@ class Park
     adults = list_passengers.count(&:adult?)
     adults * @admission_price
   end
+
+  def add_attendees(passengers)
+    @all_attendees << passengers
+  end
+
+  def list_attendees_by_name
+    sorted_attendees = @vehicles_entered.flat_map(&:passengers).sort_by(&:name)
+    sorted_attendees
+  end
+
+  # def minors_sorted
+  #   minors_sorted = []
+  #   @all_attendees.each do |minor|
+  #     minors_sorted << minor if minor.adult? 
+  #   end
+  #   minor_passengers = minors_sorted.flat_map(&:name)
+  #   minor_passengers
+  # end
 end
 
 

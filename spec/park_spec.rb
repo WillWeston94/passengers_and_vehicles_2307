@@ -42,4 +42,25 @@ RSpec.describe Park do
     @zion.add_vehicle(@vehicle)
     expect(@zion.revenue).to eq(40)
   end
+
+  it 'lists all attendees alphabetically' do
+    @vehicle.add_passenger(@charlie)
+    @vehicle.add_passenger(@taylor)
+    @vehicle.add_passenger(@jude)
+    @zion.add_vehicle(@vehicle)
+
+    expect(@zion.list_attendees_by_name).to_not eq([@jude, @taylor, @charlie])
+    expect(@zion.list_attendees_by_name).to eq([@charlie, @jude, @taylor])
+  end
+
+  # Having trouble with getting the minor to repopulate 
+  xit 'list shows only minors alphabetically' do
+    @vehicle.add_passenger(@charlie)
+    @vehicle.add_passenger(@taylor)
+    @vehicle.add_passenger(@jude)
+    @zion.add_vehicle(@vehicle)
+
+    expect(@zion.minors_sorted).to_not eq([@jude, @taylor, @charlie])
+    expect(@zion.minors_sorted).to eq([@taylor])
+  end
 end
