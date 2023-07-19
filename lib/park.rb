@@ -1,10 +1,25 @@
 class Park
-  attr_reader :name,
-              :admission_price
+  attr_reader :unique_name,
+              :admission_price,
+              :vehicles_entered
 
   def initialize(park_attributes)
-    @name = park_attributes[:name]
+    @unique_name = park_attributes[:unique_name]
     @admission_price = park_attributes[:admission_price]
+    @vehicles_entered = []
+  end
+
+  def add_vehicle(vehicle)
+    @vehicles_entered << vehicle
+  end
+
+  def count(vehicle)
+    @vehicles_entered.vehicle.count
+  end
+
+  def list_passengers
+    listed_passengers = @vehicles_entered.flat_map(&:passengers)
+    listed_passengers
   end
 end
 
