@@ -6,6 +6,7 @@ RSpec.describe Park do
   before(:each) do
     @zion = Park.new({unique_name: "Zion", admission_price: 20})
     @vehicle = Vehicle.new("2001", "Honda", "Civic")
+    @vehicle_2 = Vehicle.new("2013", "Porsche", "911")
     @charlie = Passenger.new({name: "Charlie", age: 18})
     @jude = Passenger.new({name: "Jude", age: 20})  
     @taylor = Passenger.new({name: "Taylor", age: 12})  
@@ -21,10 +22,12 @@ RSpec.describe Park do
 
   it 'adds vehicles to park' do
     @zion.add_vehicle(@vehicle)
-
-    expect(@zion.vehicles_entered).to eq([@vehicle])
-    expect(@zion.vehicles_entered.count).to eq(1)
+    @zion.add_vehicle(@vehicle_2)
+    
+    expect(@zion.vehicles_entered).to eq([@vehicle, @vehicle_2])
+    expect(@zion.vehicles_entered.count).to eq(2)
   end
+  
 
   it 'lists passengers in entered vehicle' do
     @vehicle.add_passenger(@charlie)
