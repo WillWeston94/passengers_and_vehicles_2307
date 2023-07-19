@@ -1,3 +1,6 @@
+require './lib/vehicle'
+require './lib/passenger'
+
 class Park
   attr_reader :unique_name,
               :admission_price,
@@ -20,6 +23,11 @@ class Park
   def list_passengers
     listed_passengers = @vehicles_entered.flat_map(&:passengers)
     listed_passengers
+  end
+
+  def revenue
+    adults = list_passengers.count(&:adult?)
+    adults * @admission_price
   end
 end
 

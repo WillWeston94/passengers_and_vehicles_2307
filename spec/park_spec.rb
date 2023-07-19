@@ -34,4 +34,12 @@ RSpec.describe Park do
 
     expect(@zion.list_passengers).to eq([@charlie, @jude, @taylor])
   end
+
+  it 'shows revenue generated per adult' do
+    @vehicle.add_passenger(@charlie)
+    @vehicle.add_passenger(@jude)
+    @vehicle.add_passenger(@taylor)
+    @zion.add_vehicle(@vehicle)
+    expect(@zion.revenue).to eq(40)
+  end
 end
